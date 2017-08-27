@@ -44,7 +44,7 @@ public class Snake {
                 break;
             case LEFT:
                 newHeadX = head.getxPos();
-                newHeadY = head.getyPos() -1;
+                newHeadY = head.getyPos() - 1;
 
                 break;
             case RIGHT:
@@ -52,13 +52,26 @@ public class Snake {
                 newHeadY = head.getyPos() + 1;
                 break;
         }
+        if (newHeadX >= board.getHeight()) {
+            newHeadX = 0;
+        }
+        if (newHeadX < 0) {
+            newHeadX = board.getHeight() - 1;
+        }
+        if (newHeadY >= board.getWidth()) {
+            newHeadY = 0;
+        }
+        if (newHeadY < 0) {
+            newHeadY = board.getWidth() - 1;
+        }
         tail.add(head);
         tail.get(0).setBackground(Color.WHITE);
         tail.remove(0);
         head = board.getField(newHeadX, newHeadY);
     }
-    public void setDirection(Directrion direction){
-        if(direction!=null){
+
+    public void setDirection(Directrion direction) {
+        if (direction != null) {
             this.directrion = direction;
 
         }
