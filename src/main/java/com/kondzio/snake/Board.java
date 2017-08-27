@@ -1,12 +1,15 @@
 package com.kondzio.snake;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Board {
     private final int width;
     private final int height;
     private Field[][] fields;
+    private Field apple;
 
     public Board(int width, int height) {
         this.width = width;
@@ -35,10 +38,33 @@ public class Board {
         System.out.println("Getting field x= " + x + " y= " + y);
         return fields[x][y];
     }
-    public int getWidth(){
+
+    public int getWidth() {
         return width;
     }
-    public int getHeight(){
+
+    public int getHeight() {
         return height;
+    }
+
+    public void generateApple() {
+        if (apple == null) {
+            Random r = new Random();
+            int x = r.nextInt(getWidth());
+            int y = r.nextInt(getHeight());
+            apple = getField(x, y);
+            apple.setBackground(Color.RED);
+
+        }
+
+    }
+
+    public Field getApple() {
+        return apple;
+    }
+
+
+    public void clearApple() {
+        apple = null;
     }
 }

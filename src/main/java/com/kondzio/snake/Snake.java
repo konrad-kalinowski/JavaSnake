@@ -65,8 +65,13 @@ public class Snake {
             newHeadY = board.getWidth() - 1;
         }
         tail.add(head);
-        tail.get(0).setBackground(Color.WHITE);
-        tail.remove(0);
+        if (checkIsEatingApple()) {
+            board.clearApple();
+        } else {
+            tail.get(0).setBackground(Color.WHITE);
+            tail.remove(0);
+        }
+
         head = board.getField(newHeadX, newHeadY);
     }
 
@@ -75,6 +80,25 @@ public class Snake {
             this.directrion = direction;
 
         }
+    }
+
+    public boolean isColliding() {
+        for (Field tailElement : tail) {
+            if (tailElement.getxPos() == head.getxPos() &&
+                    tailElement.getyPos() == head.getyPos()) {
+                return true;
+            }
+        }
+        return false;
+
+    }
+
+    public boolean checkIsEatingApple() {
+        if (board.getApple().getxPos() == head.getxPos()
+                && board.getApple().getyPos() == head.getyPos()) {
+            return true;
+        }
+        return false;
     }
 
 
