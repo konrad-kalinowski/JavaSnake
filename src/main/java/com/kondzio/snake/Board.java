@@ -4,6 +4,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.awt.FontMetrics;
 
 public class Board {
     private final int width;
@@ -49,12 +50,13 @@ public class Board {
 
     public void generateApple() {
         if (apple == null) {
+
             Random r = new Random();
             int x = r.nextInt(getWidth());
             int y = r.nextInt(getHeight());
             apple = getField(x, y);
             apple.setBackground(Color.RED);
-
+            System.out.println("Next apple coordinates: (" + x + ", " + y + ")");
         }
 
     }
@@ -66,5 +68,6 @@ public class Board {
 
     public void clearApple() {
         apple = null;
+        System.out.println("Cleared apple");
     }
 }

@@ -1,6 +1,7 @@
 package com.kondzio.snake;
 
 import java.awt.*;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,12 +14,15 @@ public class Snake {
     private List<Field> tail;
     private Field head;
     private Directrion directrion;
+    private UserScore score;
 
-    public Snake(Board board, List<Field> tail, Field head, Directrion directrion) {
+
+    public Snake(Board board, List<Field> tail, Field head, Directrion directrion, UserScore score) {
         this.board = board;
         this.tail = tail;
         this.head = head;
         this.directrion = directrion;
+        this.score = score;
 
     }
 
@@ -66,6 +70,7 @@ public class Snake {
         }
         tail.add(head);
         if (checkIsEatingApple()) {
+            score.increaseScore();
             board.clearApple();
         } else {
             tail.get(0).setBackground(Color.WHITE);
@@ -93,6 +98,7 @@ public class Snake {
 
     }
 
+
     public boolean checkIsEatingApple() {
         if (board.getApple().getxPos() == head.getxPos()
                 && board.getApple().getyPos() == head.getyPos()) {
@@ -100,6 +106,9 @@ public class Snake {
         }
         return false;
     }
-
-
 }
+
+
+
+
+
